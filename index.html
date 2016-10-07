@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">
+		
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+		}
+
+		/* GENERAL PAGE STYLES */
+
+		.element-wrapper {
+			max-width: 450px;
+			margin: 100px auto;
+		}
+
+
+		/* AJAX FORM SUBMISSION DEMO */
+
+		input, textarea {
+			display: block;
+			width: 100%;
+		    font-size: 18px;
+		    padding: 10px;
+		    border-radius: 3px;
+		    margin: 10px 0;
+		    border: 1px solid #cecece;
+		}
+
+		input:focus, textarea:focus {
+			outline: none;
+			border: 1px solid #78c9d2;
+		}
+
+		.button {
+			cursor: pointer;
+		}
+
+
+	</style>
+	
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+
+
+	<div class="element-wrapper">
+
+		<h1>AJAX Form Submission Demo</h1>
+
+		<p>This is an exercise in how to submit a form with Ajax so only a section of an HTML page will be updated after a successful submission, instead of the entire thing.</p>
+
+		<form id="ajax-form">
+			<input type="text" name="name" placeholder="Full Name" />
+			<input type="text" name="email" placeholder="Email address" />
+			<textarea type="text" name="message" placeholder="Your smart message"></textarea>
+
+			<input type="submit" class="button" value="Send" />
+		</form>
+	</div>
+
+	<!-- Including latest version of jQuery from CDN -->
+	<script   src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<!-- Custom JS for AJAX form, called after jQuery file -->
+	<script type="text/javascript">
+
+		// Let's use jQuery to grab form DOM node and use built-in submit method
+		$('#ajax-form').submit(function(event){
+
+			// First, we have to grab all values from the submitted form and store it in an object
+			var formData = {
+				'name' : $('input[name=name]').val(),
+				'email' : $('input[name=email]').val(),
+				'message' : $('textarea[name=message]').val()
+			}
+
+			// Then we can a request to our server using jQuery's built-in ajax method
+			$.ajax({
+				type: 'POST', // We send a POST request to WRITE a new record on DB
+				url: 'https://formspree.io/johnludena@gmail.com', 
+				// We need to specify server endpoint or URL where POST request will be sent.
+				// In this case, I'll using the hosted Formspree service instead of a PHP file
+				// to process my request and then send me an email with all info. This is great
+				// option for simple static websites!
+				data: formData, // We send our 'formData' object above with all form data
+				dataType: 'json', // The type of data we'll be sending (JSON)
+				encode: true, 
+			}) 
+				// Our callback function once the above request has been processed by server
+				.done(function(data){
+					console.log('The data from server:', data)
+					console.log('DONE!!!')
+				})
+
+
+			// Prevent page from reloading by using event.preventDefault()
+			event.preventDefault();
+		})
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+/* GENERAL PAGE STYLES */
+
+.element-wrapper {
+	max-width: 450px;
+	margin: 100px auto;
+}
+
+
+/* AJAX FORM SUBMISSION DEMO */
+
+
+
+#ajax-form input, #ajax-form textarea {
+	display: block;
+	width: 100%;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px 0;
+    border: 1px solid #cecece;
+}
+
+#ajax-form input:focus, #ajax-form textarea:focus {
+	outline: none;
+	border: 1px solid #78c9d2;
+}
+
+#ajax-form .button {
+	cursor: pointer;
+}
+
