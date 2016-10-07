@@ -54,8 +54,9 @@
 
 		<h1>AJAX Form Submission Demo</h1>
 
-		<p>This is an exercise in how to submit a form with Ajax so only a section of an HTML page will be updated after a successful submission, instead of the entire thing.</p>
+		<p>This is an exercise in how to submit a form with Ajax so only a section of an HTML page will be updated after a successful submission (instead of the entire thing).</p>
 
+		<!-- Simple HTML form (make sure every element has a 'name' element) -->
 		<form id="ajax-form">
 			<input type="text" name="name" placeholder="Full Name" />
 			<input type="text" name="email" placeholder="Email address" />
@@ -71,24 +72,29 @@
 	<!-- Custom JS for AJAX form, called after jQuery file -->
 	<script type="text/javascript">
 
-		// Let's use jQuery to grab form DOM node and use built-in submit method
+		// Let's use jQuery to grab form DOM node and use built-in submit method to
+		// trigger callback and send the form's data
 		$('#ajax-form').submit(function(event){
 
-			// First, we have to grab all values from the submitted form and store it in an object
-			var formData = {
-				'name' : $('input[name=name]').val(),
-				'email' : $('input[name=email]').val(),
-				'message' : $('textarea[name=message]').val()
-			}
+			// First, we have to grab all values from the submitted form and store
+			//it in an object
+			// var formData = {
+			// 	'name' : $('input[name=name]').val(),
+			// 	'email' : $('input[name=email]').val(),
+			// 	'message' : $('textarea[name=message]').val()
+			// }
+			var formData = $('#ajax-form').serialize()
+			
 
-			// Then we can a request to our server using jQuery's built-in ajax method
+			// Then we can send a request to our server using jQuery's built-in ajax method
+			// for asynchronous processes
 			$.ajax({
-				type: 'POST', // We send a POST request to WRITE a new record on DB
+				type: 'POST', // We send a POST request to write a new record on DB
 				url: 'https://formspree.io/johnludena@gmail.com', 
 				// We need to specify server endpoint or URL where POST request will be sent.
 				// In this case, I'll using the hosted Formspree service instead of a PHP file
-				// to process my request and then send me an email with all info. This is great
-				// option for simple static websites!
+				// to process my request and then send me an email with all info. This is a great
+				// option for simple static websites.
 				data: formData, // We send our 'formData' object above with all form data
 				dataType: 'json', // The type of data we'll be sending (JSON)
 				encode: true, 
@@ -100,7 +106,7 @@
 				})
 
 
-			// Prevent page from reloading by using event.preventDefault()
+			// Prevent page from reloading by using preventDefault()
 			event.preventDefault();
 		})
 		
