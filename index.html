@@ -77,25 +77,19 @@
 		$('#ajax-form').submit(function(event){
 
 			// First, we have to grab all values from the submitted form and store
-			//it in an object
-			// var formData = {
-			// 	'name' : $('input[name=name]').val(),
-			// 	'email' : $('input[name=email]').val(),
-			// 	'message' : $('textarea[name=message]').val()
-			// }
+			//it in an object (we'll be using jQuery's serialize() method to save all input values)
 			var formData = $('#ajax-form').serialize()
 			
 
 			// Then we can send a request to our server using jQuery's built-in ajax method
-			// for asynchronous processes
 			$.ajax({
 				type: 'POST', // We send a POST request to write a new record on DB
 				url: 'https://formspree.io/johnludena@gmail.com', 
-				// We need to specify server endpoint or URL where POST request will be sent.
-				// In this case, I'll using the hosted Formspree service instead of a PHP file
-				// to process my request and then send me an email with all info. This is a great
-				// option for simple static websites.
-				data: formData, // We send our 'formData' object above with all form data
+				// We need to specify the server endpoint or URL where this POST request
+				//will be sent. In this case, I'll using the hosted Formspree service instead
+				//of a PHP file to process my request and then send me an email with all info.
+				//This is a fantastic option for simple static websites!
+				data: formData, // This is the data we need to send (our 'formData' object)
 				dataType: 'json', // The type of data we'll be sending (JSON)
 				encode: true, 
 			}) 
@@ -103,6 +97,11 @@
 				.done(function(data){
 					console.log('The data from server:', data)
 					console.log('DONE!!!')
+
+					// Let's clear all fields after a successful submission
+					$('input[name=name]').val('');
+					$('input[name=email]').val('');
+					$('textarea[name=messages]').val('');
 				})
 
 
