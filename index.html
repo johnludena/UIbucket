@@ -54,16 +54,18 @@
 
 		<h1>AJAX Form Submission Demo</h1>
 
-		<p>This is an exercise in how to submit a form with Ajax so only a section of an HTML page will be updated after a successful submission (instead of the entire thing).</p>
+		<p>This is an exercise in how to submit a form with Ajax so only a section of an HTML page will be updated after a successful submission (instead of reloading the whole page).</p>
 
 		<!-- Simple HTML form (make sure every element has a 'name' element) -->
-		<form id="ajax-form">
-			<input type="text" name="name" placeholder="Full Name" />
-			<input type="text" name="email" placeholder="Email address" />
-			<textarea type="text" name="message" placeholder="Your smart message"></textarea>
+		<div class="form-wrapper">
+			<form id="ajax-form">
+				<input type="text" name="name" placeholder="Full Name" />
+				<input type="text" name="email" placeholder="Email address" />
+				<textarea type="text" name="message" placeholder="Your smart message"></textarea>
 
-			<input type="submit" class="button" value="Send" />
-		</form>
+				<input type="submit" class="button" value="Send" />
+			</form>
+		</div>
 	</div>
 
 	<!-- Including latest version of jQuery from CDN -->
@@ -95,13 +97,15 @@
 			}) 
 				// Our callback function once the above request has been processed by server
 				.done(function(data){
-					console.log('The data from server:', data)
-					console.log('DONE!!!')
+					console.log('The data from server:', data);
+					console.log('DONE!!!');
 
 					// Let's clear all fields after a successful submission
 					$('input[name=name]').val('');
 					$('input[name=email]').val('');
-					$('textarea[name=messages]').val('');
+					$('textarea[name=message]').val('');
+
+					$('.form-wrapper').html('<p>Success!</p>')
 				})
 
 
