@@ -42,10 +42,16 @@
 			border: 1px solid #31cc90;
 		}
 
+		.button-container {
+			margin: 20px 0;
+			text-align: center;
+		}
+
 		.button {
 			cursor: pointer;
+			display: block;
 			border-radius: 30px;
-		    padding: 15px 20px;
+		    padding: 15px;
 			background: none;
 			color: #31cc90;
 			border: 2px solid #31cc90;
@@ -55,6 +61,10 @@
 		.button:hover {
 			color: #fff;
 			background: #31cc90;
+		}
+
+		.success {
+			display: inline-block;
 		}
 
 		i {
@@ -84,7 +94,7 @@
 				<textarea type="text" name="message" placeholder="Your smart message" rows="5"></textarea>
 
 				<div class="button-container">
-					<input type="submit" class="button" value="Send" />
+					<input type="submit" class="success button" value="Send" />
 				<div>
 
 			</form>
