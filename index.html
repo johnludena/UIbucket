@@ -57,6 +57,10 @@
 			background: #31cc90;
 		}
 
+		i {
+			vertical-align: bottom;
+		}
+
 
 	</style>
 	
@@ -79,7 +83,10 @@
 				<input type="text" name="email" placeholder="Email address" />
 				<textarea type="text" name="message" placeholder="Your smart message" rows="5"></textarea>
 
-				<input type="submit" class="button" value="Send" />
+				<div class="button-container">
+					<input type="submit" class="button" value="Send" />
+				<div>
+
 			</form>
 		</div>
 	</div>
@@ -121,8 +128,8 @@
 					$('input[name=email]').val('');
 					$('textarea[name=message]').val('');
 
-					var successMessage = '<i class="material-icons">done</i>'
-					$('.button').val(successMessage)
+					var successButton = '<a class="button"><i class="material-icons">done</i></a>'
+					$('.button-container').html(successButton)
 				})
 
 
