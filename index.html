@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>AJAX Form Demo</title>
+
+	<!-- Loading Material Design Icons by Google -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
 	<style type="text/css">
 		
@@ -35,17 +39,27 @@
 
 		input:focus, textarea:focus {
 			outline: none;
-			border: 1px solid #78c9d2;
+			border: 1px solid #31cc90;
 		}
 
 		.button {
 			cursor: pointer;
+			border-radius: 30px;
+		    padding: 15px 20px;
+			background: none;
+			color: #31cc90;
+			border: 2px solid #31cc90;
+			transition: all 1s ease;
+		}
+
+		.button:hover {
+			color: #fff;
+			background: #31cc90;
 		}
 
 
 	</style>
 	
-	<link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 
@@ -56,12 +70,14 @@
 
 		<p>This is an exercise in how to submit a form with Ajax so only a section of an HTML page will be updated after a successful submission (instead of reloading the whole page).</p>
 
+		<p></p>
+
 		<!-- Simple HTML form (make sure every element has a 'name' element) -->
 		<div class="form-wrapper">
 			<form id="ajax-form">
 				<input type="text" name="name" placeholder="Full Name" />
 				<input type="text" name="email" placeholder="Email address" />
-				<textarea type="text" name="message" placeholder="Your smart message"></textarea>
+				<textarea type="text" name="message" placeholder="Your smart message" rows="5"></textarea>
 
 				<input type="submit" class="button" value="Send" />
 			</form>
@@ -105,7 +121,8 @@
 					$('input[name=email]').val('');
 					$('textarea[name=message]').val('');
 
-					$('.button').val('Success!')
+					var successMessage = '&lt;i class=&quot;material-icons&quot;&gt;done&lt;/i&gt;'
+					$('.button').val(successMessage)
 				})
 
 
